@@ -65,7 +65,8 @@ def get_average_scores():
     result = conn.execute(f"SELECT year, AVG(score) FROM history_scores WHERE course_id = {course_id} GROUP BY year")
     scores = result.fetchall()
     conn.close()
-
+    
+    ###############################################################################
     # Trigger SNS and Lambda
     sns_client = boto3.client('sns', 
         aws_access_key_id='AKIAQDFQ7YHZEUDPVOXU',
@@ -80,7 +81,7 @@ def get_average_scores():
     message = json.dumps({"table": table_string})
 
     sns_client.publish(TopicArn=sns_topic_arn, Message=message)
-    ###
+    ###############################################################################
 
     return jsonify(scores)
 
