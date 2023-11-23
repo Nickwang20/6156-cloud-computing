@@ -68,9 +68,10 @@ def get_average_scores():
     
     ###############################################################################
     # Trigger SNS and Lambda
+    from aws_access_key import aws_access_key_id, aws_secret_access_key
     sns_client = boto3.client('sns', 
-        aws_access_key_id='AKIAQDFQ7YHZEUDPVOXU',
-        aws_secret_access_key='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',
+        aws_access_key_id= aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key,
         region_name='us-east-2')
 
     sns_topic_arn = 'arn:aws:sns:us-east-2:006813630962:snstriggledbygetscore'  # Replace with your SNS topic ARN
